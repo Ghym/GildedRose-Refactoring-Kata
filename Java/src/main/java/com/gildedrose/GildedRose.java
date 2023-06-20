@@ -63,6 +63,9 @@ class GildedRose {
         decreaseItemQuality(item, 1);
     }
     void decreaseItemQuality(Item item, int qualityDecrease) {
+        if (item.name.toLowerCase().contains("conjured")) {
+            qualityDecrease = qualityDecrease * 2;
+        }
         item.quality -= qualityDecrease;
         if (item.quality < 0) {
             item.quality = 0;

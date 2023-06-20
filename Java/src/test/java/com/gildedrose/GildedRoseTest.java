@@ -125,6 +125,14 @@ class GildedRoseTest {
         assertEquals(0, backstagePass.quality);
     }
 
+    @Test
+    void conjuredItem_anyItem_DecreaseQualityTwiceFaster() {
+        Item conjuredItem = new Item("Conjured Item", 10, 10);
+        Item[] items = { conjuredItem };
+        instantiateGildedRoseAndUpdateQuality(items);
+        assertEquals(8, conjuredItem.quality);
+    }
+
     private static void instantiateGildedRoseAndUpdateQuality(Item[] items) {
         GildedRose target = new GildedRose(items);
         target.updateQuality();
