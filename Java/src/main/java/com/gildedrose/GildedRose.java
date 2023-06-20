@@ -16,53 +16,55 @@ class GildedRose {
     public void updateQuality() {
         Arrays.asList(items).stream().forEach(item -> {
 
-            if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                return;
-            }
-
-            item.sellIn = item.sellIn - 1;
-
-            if (item.name.equals("Aged Brie")) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-                return;
-            }
-
-            if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                }
-            } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-
-                    if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.sellIn < 11) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
-
-                        if (item.sellIn < 6) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
-                        }
+        switch (item.name) {
+            case "Sulfuras, Hand of Ragnaros":
+                break;
+            case "Aged Brie":
+                item.sellIn = item.sellIn - 1;
+                increaseItemQuality(item);
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                if (item.sellIn <= 0) {
+                    item.quality = 0;
+                } else {
+                    int qualityIncrease = 1;
+                    if (item.sellIn < 6) {
+                        qualityIncrease = 3;
+                    } else if (item.sellIn < 11) {
+                        qualityIncrease = 2;
                     }
+                    increaseItemQuality(item, qualityIncrease);
                 }
-            }
+                break;
+            default:
+                decreaseItemQuality(item);
 
-            if (item.sellIn < 0) {
-                    if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (item.quality > 0) {
-                                item.quality = item.quality - 1;
-                        }
-                    } else {
-                        item.quality = item.quality - item.quality;
-                    }
-
-            }
+                item.sellIn = item.sellIn - 1;
+                if (item.sellIn < 0) {
+                    decreaseItemQuality(item);
+                }
+                break;
+        }
         });
+    }
+
+    void increaseItemQuality(Item item) {
+        increaseItemQuality(item, 1);
+    }
+    void increaseItemQuality(Item item, int qualityIncrease) {
+        item.quality += qualityIncrease;
+        if (item.quality > MAX_QUALITY) {
+            item.quality = MAX_QUALITY;
+        }
+    }
+
+    void decreaseItemQuality(Item item) {
+        decreaseItemQuality(item, 1);
+    }
+    void decreaseItemQuality(Item item, int qualityDecrease) {
+        item.quality -= qualityDecrease;
+        if (item.quality < 0) {
+            item.quality = 0;
+        }
     }
 }
