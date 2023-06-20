@@ -1,7 +1,13 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
     Item[] items;
+
+    public static int MAX_QUALITY = 50;
+
+
 
     public GildedRose(Item[] items) {
         this.items = items;
