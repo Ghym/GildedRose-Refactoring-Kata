@@ -83,6 +83,7 @@ class GildedRoseTest {
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(11, backstagePass.quality);
+        assertEquals(19, backstagePass.sellIn);
     }
 
     @Test
@@ -91,6 +92,7 @@ class GildedRoseTest {
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(12, backstagePass.quality);
+        assertEquals(9, backstagePass.sellIn);
     }
 
     @Test
@@ -99,6 +101,7 @@ class GildedRoseTest {
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(12, backstagePass.quality);
+        assertEquals(7, backstagePass.sellIn);
     }
 
     @Test
@@ -107,6 +110,7 @@ class GildedRoseTest {
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(13, backstagePass.quality);
+        assertEquals(4, backstagePass.sellIn);
     }
 
     @Test
@@ -115,6 +119,7 @@ class GildedRoseTest {
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(13, backstagePass.quality);
+        assertEquals(2, backstagePass.sellIn);
     }
 
     @Test
@@ -123,6 +128,7 @@ class GildedRoseTest {
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(0, backstagePass.quality);
+        assertEquals(-1, backstagePass.sellIn);
     }
 
     @Test
@@ -131,6 +137,7 @@ class GildedRoseTest {
         Item[] items = { conjuredItem };
         instantiateGildedRoseAndUpdateQuality(items);
         assertEquals(8, conjuredItem.quality);
+        assertEquals(9, conjuredItem.sellIn);
     }
 
     private static void instantiateGildedRoseAndUpdateQuality(Item[] items) {
