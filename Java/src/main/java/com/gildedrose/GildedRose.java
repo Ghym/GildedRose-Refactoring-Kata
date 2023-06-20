@@ -52,6 +52,7 @@ class GildedRose {
         increaseItemQuality(item, 1);
     }
     void increaseItemQuality(Item item, int qualityIncrease) {
+
         item.quality += qualityIncrease;
         if (item.quality > MAX_QUALITY) {
             item.quality = MAX_QUALITY;

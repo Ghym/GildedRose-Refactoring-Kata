@@ -20,9 +20,20 @@ class GildedRoseTest {
         Item someItem = new Item("Some Item",4, 4);
         Item[] items = new Item[] { someItem };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(3, actual.quality);
-        assertEquals(3, actual.sellIn);
+        assertEquals(3, someItem.quality);
+        assertEquals(3, someItem.sellIn);
+    }
+
+    @Test
+    void someItems_WithSellInAndQualityOverZero_decreaseByOneEachForEachItem() {
+        Item itemOne = new Item("ItemOne",4, 4);
+        Item itemTwo = new Item("ItemTwo",3, 3);
+        Item[] items = new Item[] { itemOne, itemTwo };
+        instantiateGildedRoseAndUpdateQuality(items);
+        assertEquals(3, itemOne.quality);
+        assertEquals(3, itemOne.sellIn);
+        assertEquals(2, itemTwo.quality);
+        assertEquals(2, itemTwo.sellIn);
     }
 
     @Test
@@ -30,8 +41,7 @@ class GildedRoseTest {
         Item someItem = new Item("Some Item",1, 0);
         Item[] items = new Item[] { someItem };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(0, actual.quality);
+        assertEquals(0, someItem.quality);
     }
 
 
@@ -41,8 +51,7 @@ class GildedRoseTest {
         Item someItem = new Item("Some Item",0, 4);
         Item[] items = new Item[] { someItem };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(2, actual.quality);
+        assertEquals(2, someItem.quality);
     }
 
     @Test
@@ -50,8 +59,7 @@ class GildedRoseTest {
         Item agedBrie = new Item("Aged Brie",0, 1);
         Item[] items = new Item[] { agedBrie };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertFalse(actual.quality <= 1);
+        assertFalse(agedBrie.quality <= 1);
     }
 
     @Test
@@ -59,16 +67,14 @@ class GildedRoseTest {
         Item agedBrie = new Item("Aged Brie",0, 50);
         Item[] items = new Item[] { agedBrie };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(50, actual.quality);
+        assertEquals(50, agedBrie.quality);
     }
     @Test
     public void sufuras_withAnySellInAndQuality_remainsUnchanged() {
         Item sulfuras = new Item("Sulfuras, Hand of Ragnaros",0, 80);
         Item[] items = { sulfuras };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(80, actual.quality);
+        assertEquals(80, sulfuras.quality);
     }
 
     @Test
@@ -76,8 +82,7 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert",20, 10);
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(11, actual.quality);
+        assertEquals(11, backstagePass.quality);
     }
 
     @Test
@@ -85,8 +90,7 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert",10, 10);
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(12, actual.quality);
+        assertEquals(12, backstagePass.quality);
     }
 
     @Test
@@ -94,8 +98,7 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert",8, 10);
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(12, actual.quality);
+        assertEquals(12, backstagePass.quality);
     }
 
     @Test
@@ -103,8 +106,7 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert",5, 10);
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(13, actual.quality);
+        assertEquals(13, backstagePass.quality);
     }
 
     @Test
@@ -112,8 +114,7 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert",3, 10);
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(13, actual.quality);
+        assertEquals(13, backstagePass.quality);
     }
 
     @Test
@@ -121,8 +122,7 @@ class GildedRoseTest {
         Item backstagePass = new Item("Backstage passes to a TAFKAL80ETC concert",0, 10);
         Item[] items = { backstagePass };
         instantiateGildedRoseAndUpdateQuality(items);
-        Item actual = items[0];
-        assertEquals(0, actual.quality);
+        assertEquals(0, backstagePass.quality);
     }
 
     private static void instantiateGildedRoseAndUpdateQuality(Item[] items) {
